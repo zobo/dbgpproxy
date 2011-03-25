@@ -1,0 +1,21 @@
+A small and simple implementation of a DBGP proxy daemon.
+The idea was to do a proof of concept implementation in PHP and use it as a base
+for a C implementation, that's why the code looks like last Thursday. (And
+because much of it was written of the top of the head w/o planning. *sigh*)
+
+The code include style might also look a bit off, that's because it was planned
+to be used with bcompiler.
+
+USAGE
+
+php dbgpproxy.php
+
+If your PHP spits out something about missing pcntl_fork, change
+$options['deamonize'] to false in src/main.php. It will not daemonize and you'll
+be stuck using screen or similar.
+
+-----
+What I want to fix:
+- have a true nonblocking application. This means that I need to move all buffer
+  handling  to the network code. Yay...
+- clean it up? We know we aint gonna port it to C now.
